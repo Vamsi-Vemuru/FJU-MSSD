@@ -1,0 +1,194 @@
+<!DOCTYPE html>   
+
+{% load static %}
+
+<html lang="en">
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="{% static "css\bootstrap.min.css" %}" />
+	  <link rel="stylesheet" href="{% static "css\template.css" %}" />
+    <link rel="stylesheet" href="{% static "css\bootstrap-responsive.css" %}" />
+    <link rel="stylesheet" href="{% static "css\sidebar.css" %}" />
+	  <script src="{% static "js\jquery-1.11.3.min.js" %}"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+  /* Icon when the collapsible content is shown */
+  .btn:after {
+    font-family: "Glyphicons Halflings";
+    //content: "\e114";
+    float: right;
+    margin-left: 15px;
+    //border-radius:5px;
+  }
+  /* Icon when the collapsible content is hidden */
+  .btn.collapsed:after {
+    border-radius:5px;
+    //content: "\e080";
+  }
+  
+  .collapsed   {
+  width:2x00px;
+  //border-radius:5px;
+  }
+  
+  .btn_con {
+  width:200px;
+  margin-top:10px;
+  margin-left:20px;
+  }
+  
+
+  
+</style>
+		<title>
+			FJU
+		</title>
+	</head>
+	<body>
+		<div style="width:100%; height:auto;">
+			<div style="background-color:#0097A7;">
+				<img src="{% static "images\fju1.jpg" %}" class="headerimg" /><font class="ribbonfont">Franklin Jefferson University</font>
+			</div>
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>                        
+			      </button>
+			      <a class="navbar-brand" href="#"><b><font><span class="glyphicon glyphicon-home"></span> Frankilin Jefferson University</font></b></a>
+			    </div>
+			    <div class="collapse navbar-collapse" id="myNavbar">
+			      
+			      <ul class="nav navbar-nav navbar-right">
+			        <li><a href="#"><b><font><span class="glyphicon glyphicon-book"></span> Catalog</font></b></a></li>
+			        <li><a href="#"><b><font><span class="glyphicon glyphicon-log-in"></span> Login</font></a></b></li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+      
+      
+      <div class = "container-fluid">
+			<div style="width:100%; min-height:90%;">
+      <div class="row-fluid">
+      <div class="span2" style="width:auto;">
+      <div id="sidebar-wrapper">
+
+      {% if mod_list %}
+        <ul class="sidebar-nav">
+                {% for category,c_names in mod_list.items%}
+                <li>
+                <div class = "btn_con">
+                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#{{category}}">{{ category}}</button> 
+                
+                <div id="{{category}}" class="collapse">
+                
+                {% for c_name in c_names %}
+                <a href="#" onclick="theFunction(this);">{{ c_name }}</a>
+  
+                {% endfor %}
+                
+                </div>
+                </div>
+                
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+        </div>
+
+        <div class="container-fluid" id="" style="margin-left:30%; width:40%; height:40%; overflow-y:auto; overflow-x:auto;">
+        <h2 id="sttt" style="visibility:visible; text-align:center;">Click on Modules to Start</h2>
+        <div id="can1" style="overflow-y:auto; overflow-x:auto; visibility:hidden;">
+        <h2 style="text-align:center;" id="head1"></h2>
+        <h4 style="text-align:left;">LEARNING OBJECTIVES</h3>
+        <div class="container-fluid" id="learn"></div>
+        <h4 style="text-align:left;">CHALLENGE</h3>
+        <div class="container-fluid" id="chal"></div>
+        <h4 style="text-align:left;">SHOW HOW</h3>
+        <div class="container-fluid" id="sh_how"></div>
+        <h4 style="text-align:left;">REFERENCES</h3>
+        <div class="container-fluid" id="ref"></div>
+        <h4 style="text-align:left;">SUBMISSION</h3>
+        <textarea row="20" cols="50"></textarea><br>
+        <input type="file" class="filestyle" data-input="false"><br>
+        <input type="submit" class="btn btn-danger" value="Submit Button">
+        </div>
+        </div>
+
+        <div class="container-fluid">
+        <div id="rightbar-wrapper">
+
+
+  <div class="alert alert-info">
+    <strong><a href="{% url 'faqs' %}">FAQ'S</a></strong>
+  </div>
+ 
+
+  <div class="alert alert-info">
+    <strong><a href="{% url 'ask' %}">ASK</a></strong>
+  </div>
+
+  
+
+			</div>
+      </div>
+      </div>
+      </div>
+     </div>
+
+			
+
+
+
+
+			<div style="">
+			<footer class="footerfix">
+	    	<div class="container text-center">
+  				<div style="margin-top:10px">
+    				<div class="col-lg-12">
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">Terms and Services</a></li>
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">Catalog</a></li>
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">FAQ</a></li>          		
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;">Copyrights</li>          		
+        				</ul>
+      				</div>  
+    				</div>
+  				</div>
+				</div>
+  		</footer> </div>
+  	</div>
+    
+    
+    <script language="JavaScript">
+    function theFunction(obj) {
+    var x = $(obj).text();
+    var y = document.getElementById("sttt").innerHTML;
+    document.getElementById("sttt").innerHTML = x;  
+    var v = document.getElementById("can1");
+    v.style.visibility = 'visible';
+    //v.style.textAlign = 'center';
+    }
+    </script>
+    
+    
+	</body>
+</html>
