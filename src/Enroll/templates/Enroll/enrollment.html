@@ -1,0 +1,153 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="{% static 'Enroll/css/bootstrap.min.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'Enroll/css/style.css'%}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'Enroll/css/template.css'%}"/>
+		<link href="{% static 'Enroll/css/bootstrap-datetimepicker.min.css'%}" rel="stylesheet" media="screen">
+		<script src="{% static 'Enroll/js/jquery.min.js'%}"/></script>
+		<script src="{% static 'Enroll/js/jquery-1.8.3.min.js'%}" charset="UTF-8"></script>
+		<script src="{% static 'Enroll/js/bootstrap.min.js'%}"/></script>
+		<script src="{% static 'Enroll/js/bootstrap-datetimepicker.js'%}" charset="UTF-8"></script>
+		<script src="{% static 'Enroll/js/locales/bootstrap-datetimepicker.fr.js'%}" charset="UTF-8"></script>
+		<title>
+			FJU | Enrollment
+		</title>
+	</head>
+	<body>
+	<form action="enrollment1" method="POST">
+	{%csrf_token%}
+		<div style="width:100%; height:auto;">
+			<div style="background-color:#0097A7;">
+				<img src="{% static 'Enroll/images/fju1.jpg' %}" class="headerimg"><font class="ribbonfont">Franklin Jefferson University</font>
+			</div>
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+			  	<div class="navbar-header">
+			    	<a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span><b><font> Frankilin Jefferson University</font></b></a>
+			  	</div>
+			  	<div class = "collapse navbar-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>                        
+			    </button>
+		   		<ul class="nav navbar-nav navbar-right">
+		   			<!-- <li><a href="#"><b><font>Catalog</font></b></a></li> -->
+		     		<li><a href="#"><span class="glyphicon glyphicon-log-out"></span><b><font> Logout</font></a></b></li>
+		   		</ul>
+				</div>
+				</div>
+			</nav>
+		<div style="width:100%; min-height:90%;">
+			<div class="row" align="center">
+				<h3>{{ course_details.course_title }}</h3>
+				<h3>PLAN OF STUDY</h3>
+			</div>
+			<div class = "row">
+				<div class="col-sm-4" align = "center">
+					<h4>START DATE</h4>
+					<div class="input-group date form_date col-sm-8" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="YYYY-MM-DD">
+		                <input class="form-control" size="16" type="text" value="" readonly name="start_date">
+		                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		            </div>
+		            <script type="text/javascript">
+		            	$('.form_date').datetimepicker({
+					        // language:  'fr',
+					        weekStart: 1,
+					        todayBtn:  1,
+							autoclose: 1,
+							todayHighlight: 1,
+							startView: 2,
+							minView: 2,
+							forceParse: 0
+					    });
+		            </script>
+		    	</div>
+				<div class="col-sm-4">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6" align="center">
+						<label><h4>CATEGORY</h4></label>
+						<select class="form-control" name="category">
+						    <option>PART TIME</option>
+						    <option>FULL TIME</option>
+						</select>
+					</div>
+					<div class="col-sm-3"></div>
+				</div>
+				<div class="col-sm-4" align="center">
+					<div class="col-sm-6">
+						<label><h4>WORKING FORMAT</h4></label>
+						<select class="form-control" name="working_format">
+						    <option>HOURS PER WEEK</option>
+						    <option>HOURS PER DAY</option>
+						</select>
+				    </div>
+				    <div class="col-sm-6">
+				    	<label><h4>HOURS</h4></label>
+				    	<input type="text" id = "hours" name="hours"> </input>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<!-- <ul>
+			<div class="row">
+				<div class="col-sm-4" align="center"><h4>Module Number</h4></div>
+				<div class="col-sm-4" align="center"><h4>Module Title</h4></div>
+				<div class="col-sm-4" align="center"><h4>Duration</h4></div>
+			</div>
+			{% for module in course_details.modules_set.all %}
+			    <div class="row">
+					<div class="col-sm-4" align="center"><h4>{{module.module_number}}</h4></div>
+					<div class="col-sm-4" ><h4>{{module.module_title}}</h4></div>
+					<div class="col-sm-4" align="center"><h4>{{module.hours_to_finish_module}}</h4></div>
+				</div>
+			{% endfor %}
+		</ul> -->
+		<div class="row" style="margin-top:10%">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4" align="center">
+				<ul style="list-style:none">
+  					<li><button type = "submit" class = "btn btn-primary" onclick="">Commit</button></li>
+				</ul>
+			</div>
+		</div>
+		</form>
+		</div>
+			<div style="">
+			<footer class="footerfix">
+	    	<div class="container text-center">
+  				<div style="margin-top:10px">
+    				<div class="col-lg-12">
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">Terms and Services</a></li>
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">Catalog</a></li>
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;"><a href="#">FAQ</a></li>          		
+        				</ul>
+      				</div>
+      				<div class="col-md-3">
+        				<ul style="list-style:none">
+          				<li style="color:white;">Copyrights</li>          		
+        				</ul>
+      				</div>  
+    				</div>
+  				</div>
+				</div>
+  		</footer> </div>
+  	</div>
+	</body>
+</html>

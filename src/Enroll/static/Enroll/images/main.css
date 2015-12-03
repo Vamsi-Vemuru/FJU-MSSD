@@ -1,0 +1,22 @@
+#third-para {
+	color:orange;
+	background-color: blue;
+}
+.div-class {
+	background-color: aqua;
+	font-size: 59px;
+}
+#main{
+   position:flex;
+}
+#left {
+	color:red;
+}
+#right{
+	color:green;
+}
+#text {
+	padding-left: 10%;
+	padding-bottom: 0%;
+
+}
