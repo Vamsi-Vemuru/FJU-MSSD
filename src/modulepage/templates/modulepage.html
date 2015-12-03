@@ -77,17 +77,39 @@
       <div class="span2" style="width:auto;">
       <div id="sidebar-wrapper">
 
-      {% if mod_list %}
+     <!--  {% if mod_list %}
         <ul class="sidebar-nav">
-                {% for category,c_names in mod_list.items%}
+                {% for course,modules in mod_list.items%}
                 <li>
                 <div class = "btn_con">
-                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#{{category}}">{{ category}}</button> 
+                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#{{course}}">{{ course }}</button> 
                 
-                <div id="{{category}}" class="collapse">
+                <div id="{{course}}" class="collapse">
                 
-                {% for c_name in c_names %}
-                <a href="#" onclick="theFunction(this);">{{ c_name }}</a>
+                {% for module in modules %}
+                <a href="#" onclick="theFunction(this);">{{ module }}</a>
+  
+                {% endfor %}
+                
+                </div>
+                </div>
+                
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %} -->
+
+        {% if mod_list %}
+        <ul class="sidebar-nav">
+                {% for course,modules in mod_list.items%}
+                <li>
+                <div class = "btn_con">
+                <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#{{course}}">{{ course }}</button> 
+                
+                <div id="{{course}}" class="collapse">
+                
+                {% for module in modules %}
+                <a href="#" onclick="theFunction('{{ module.mt}}', '{{ module.lo}}', '{{ module.chal}}', '{{ module.sh}}', '{{ module.ref}}');">{{ module.mt }}</a>
   
                 {% endfor %}
                 
@@ -110,7 +132,11 @@
         <h4 style="text-align:left;">CHALLENGE</h3>
         <div class="container-fluid" id="chal"></div>
         <h4 style="text-align:left;">SHOW HOW</h3>
-        <div class="container-fluid" id="sh_how"></div>
+        <div class="container-fluid" id="sh_how">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe id="sh" class="embed-responsive-item" src=""></iframe>
+          </div>
+        </div>
         <h4 style="text-align:left;">REFERENCES</h3>
         <div class="container-fluid" id="ref"></div>
         <h4 style="text-align:left;">SUBMISSION</h3>
@@ -179,12 +205,16 @@
     
     
     <script language="JavaScript">
-    function theFunction(obj) {
-    var x = $(obj).text();
+    function theFunction(mt,lo,ch,sh,ref) {
+    var x = mt;
     var y = document.getElementById("sttt").innerHTML;
     document.getElementById("sttt").innerHTML = x;  
     var v = document.getElementById("can1");
     v.style.visibility = 'visible';
+    document.getElementById("learn").innerHTML = lo;  
+    document.getElementById("chal").innerHTML = ch;
+    document.getElementById("sh").src = sh;
+    document.getElementById("ref").innerHTML = ref;  
     //v.style.textAlign = 'center';
     }
     </script>

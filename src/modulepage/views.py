@@ -13,16 +13,31 @@ def askq(request):
 	# email.send()
 	return render(request,'ask.html',{})
 def modulepage(request):
-	categories = Course.objects.all()
-	c_names = Module_content.objects.all()
+	courseobj = Course.objects.all()
+	moduledataobj = Module_content.objects.all()
 	mod_list = {}
-	for category in categories:
-		for c_name in c_names:
-			if category.title_text in mod_list:
-				if str(category.course_id) == str(c_name.course_id):
-					mod_list[category.title_text].append(c_name.module_title)
+	for course in courseobj:
+		for module in moduledataobj:
+			if course.title_text in mod_list:
+				if str(course.course_id) == str(module.course_id):
+					data = {
+							'mt':module.module_title,
+							'lo':module.objective,
+							'chal':module.challenge,
+							'sh':module.show_how,
+							'ref':module.references
+					}
+					mod_list[course.title_text].append(data)
 			else:
-				if str(category.course_id) == str(c_name.course_id):
-					mod_list[category.title_text] = [c_name.module_title]
+				if str(course.course_id) == str(module.course_id):
+					data = {
+							'mt':module.module_title,
+							'lo':module.objective,
+							'chal':module.challenge,
+							'sh':module.show_how,
+							'ref':module.references
+					}
+					# dic = {module.module_title:data}
+					mod_list[course.title_text] = [data]
 	print mod_list
 	return render(request, "modulepage.html", {'mod_list':mod_list})
